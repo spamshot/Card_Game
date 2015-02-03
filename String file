@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">Bubblelvl</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="p1">You: </string>
+    <string name="p2">Bot: </string>
+    <string name="s1">score: </string>
+    <string name="s2">score: </string>
+    <string name="b1">Dealer</string>
+
+    <string name="b2">New Game!</string>
+    <string name="uw">You Win!</string>
+    <string name="bw">Bot Wins!</string>
+
+</resources>
