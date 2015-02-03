@@ -1,0 +1,103 @@
+
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import java.util.Random;
+
+
+public class MainActivity extends ActionBarActivity {
+
+    TextView pOne;
+    TextView pTwo;
+    TextView sOne;
+    TextView sTwo;
+    TextView winTx;
+    Button b1;
+    // min and max number count
+    int min = 1;
+    int max = 10;
+    //score
+    int s1 = 0;
+    int s2 = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    }
+    public void NumClick(View view){
+        //Random number
+        Random rNum = new Random();
+        int p1Num = rNum.nextInt((max - min) + 1)+ min;
+        int p2Num = rNum.nextInt((max - min) + 1)+ min;
+        //sets the TextViews
+        pOne = (TextView)findViewById(R.id.pOne);
+        pTwo = (TextView)findViewById(R.id.pTwo);
+        sOne = (TextView)findViewById(R.id.sOne);
+        sTwo = (TextView)findViewById(R.id.sTwo);
+        winTx = (TextView)findViewById(R.id.winTx);
+        //sets the button
+        b1 = (Button)findViewById(R.id.b1);
+
+        pOne.setText("You: " +p1Num);
+        pTwo.setText("Bot: "+ p2Num);
+
+
+        //If you has 6 points
+        if(s1 == 6){
+            winTx.setVisibility(View.VISIBLE);
+            winTx.setText(R.string.uw);
+            b1.setText("New Game?");
+            s1 = 0;
+            s2 = 0;
+        }else if (s2 == 6){ //If Bot has 6 points
+            winTx.setVisibility(View.VISIBLE);
+            winTx.setText(R.string.bw);
+            b1.setText("New Game?");
+            s1 = 0;
+            s2 = 0;
+        }else{
+            if(p1Num == p2Num){
+                winTx.setVisibility(View.INVISIBLE);
+                b1.setText("Dealer");
+                //Don't change
+                // draw
+            }else if(p1Num > p2Num){
+                winTx.setVisibility(View.INVISIBLE);
+                b1.setText("Dealer");
+                //PlayerOne gets a point
+                s1++;
+                if(s1 == 6) {
+                    winTx.setVisibility(View.VISIBLE);
+                    winTx.setText(R.string.uw);
+                    b1.setText("New Game?");
+                    s1 = 0;
+                    s2 = 0;
+                }
+            }else{
+                winTx.setVisibility(View.INVISIBLE);
+                b1.setText("Dealer");
+                //PlayerTwo gets a point
+                s2++;
+                if(s2 == 6) {
+                    winTx.setVisibility(View.VISIBLE);
+                    winTx.setText(R.string.bw);
+                    b1.setText("New Game?");
+                    s1 = 0;
+                    s2 = 0;
+                }
+            }
+        }
+
+
+
+        //Sets score
+        sOne.setText("Score: " + s1);
+        sTwo.setText("Score: " + s2);
+    }
